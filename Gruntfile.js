@@ -13,7 +13,7 @@ module.exports = function (grunt) {
             },
             build: {
                 options: {
-                    script: 'bin/timeline-server-node.js'
+                    script: 'bin/pns_drone_delivery_server.js'
                 }
             }
         },

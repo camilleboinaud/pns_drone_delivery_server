@@ -8,7 +8,7 @@ var uuid = require('node-uuid');
 
 var router = express.Router();
 
-router.get('/', getAllUsers);
+router.get('/caca', getAllUsers);
 
 
 function getAllUsers(req, res) {
