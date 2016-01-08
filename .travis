@@ -1,0 +1,12 @@
+language: nodejs
+node_js:
+  - "4.1"
+notifications:
+  email:
+    recipients:
+      - camille.boinaud@etu.unice.fr
+      - remy.dupanloup@etu.unice.fr
+      - clement.forneris@etu.unice.fr
+      - pierre.leca@etu.unice.fr
+    on_success: change
+    on_failure: always
