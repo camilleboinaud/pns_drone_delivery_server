@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: 'qrcode.drone@gmail.com',
-    pass: 'QRCode123'
+    pass: 'QRCode123'//process.env.MDP
   }
 });
 
@@ -26,6 +26,10 @@ function sendEmail (req, res){
             from: mail.name+' <'+ mail.sender +'>',
             to: 'clement.forneris@gmail.com',
             subject: 'Confirmation drone delivry ',
+            attachments: [{
+                    filename: 'lol.jpg',
+                    path: './lol.jpg',
+            }],
             text: mail.message,
             html: mail.message
     };
