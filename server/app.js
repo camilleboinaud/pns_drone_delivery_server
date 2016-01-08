@@ -8,7 +8,7 @@ var multer = require('multer');
 
 var health = require('../routes/health');
 var users = require('../routes/users');
-var mail = require('../routes/mail')
+var mail = require('../routes/mail');
 
 var app = express();
 

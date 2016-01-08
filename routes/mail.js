@@ -32,7 +32,7 @@ function sendEmail (req, res){
 
     transporter.sendMail(mailOptions, function(err, response){
         if (err){
-            console.error(err)
+            console.error(err);
             res.status(500).send()
         } else {
             res.send({status:'success'});
