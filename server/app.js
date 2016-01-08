@@ -9,8 +9,6 @@ var multer = require('multer');
 var health = require('./../routes/health');
 var users = require('./../routes/users');
 
-var cassandra = require('cassandra-driver');
-
 var app = express();
 
 app.use(bodyParser.json()); // for parsing application/json
