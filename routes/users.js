@@ -14,7 +14,7 @@ function getAllUsers(req, res) {
     console.log("GET ALL USERS");
     //console.log(req);
     console.log("prout");
-    res.send({status:'success',content:'it works fine !'});
+    res.status(500).send({status:'success',content:'it works fine !'});
 }
 
 module.exports = router;

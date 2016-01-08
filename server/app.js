@@ -6,8 +6,9 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var multer = require('multer');
 
-var health = require('./../routes/health');
-var users = require('./../routes/users');
+var health = require('../routes/health');
+var users = require('../routes/users');
+var mail = require('../routes/mail')
 
 var app = express();
 
@@ -30,5 +31,6 @@ app.get('/', function(req, res){
 
 app.use('/health', health);
 app.use('/users', users);
+app.use('/send', mail);
 
 module.exports = app;
