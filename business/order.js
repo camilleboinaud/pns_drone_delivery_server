@@ -36,7 +36,4 @@ var orderSchema = mongoose.Schema({user_id: mongoose.Schema.Types.ObjectId,
 );
 var Order = mongoose.model('orders', orderSchema);
 
-module.exports = {
-    create : createNewCommande,
-    deuxieme : deux
-};
+module.exports = createNewCommande;

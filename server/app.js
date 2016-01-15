@@ -8,6 +8,7 @@ var multer = require('multer');
 
 var health = require('../routes/health');
 var users = require('../routes/users');
+var order = require('../routes/order');
 var mail = require('../routes/mail');
 
 var app = express();
@@ -31,5 +32,6 @@ app.get('/', function(req, res){
 app.use('/health', health);
 app.use('/users', users);
 app.use('/send', mail);
+app.use('/order', order);
 
 module.exports = app;
