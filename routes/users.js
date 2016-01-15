@@ -10,7 +10,6 @@ var router = express.Router();
 
 router.get('/caca', getAllUsers);
 
-
 function getAllUsers(req, res) {
     console.log("GET ALL USERS");
     //console.log(req);
