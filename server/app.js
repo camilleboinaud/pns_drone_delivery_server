@@ -10,7 +10,7 @@ var health = require('../routes/health');
 var users = require('../routes/users');
 var order = require('../routes/order');
 var mail = require('../routes/mail');
-
+var client = require('../routes/client');
 var app = express();
 
 app.use(bodyParser.json()); // for parsing application/json
@@ -33,5 +33,6 @@ app.use('/health', health);
 app.use('/users', users);
 app.use('/send', mail);
 app.use('/order', order);
+app.use('/clients', client);
 
 module.exports = app;
