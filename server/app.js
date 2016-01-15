@@ -9,12 +9,12 @@ var multer = require('multer');
 var health = require('../routes/health');
 var users = require('../routes/users');
 var mail = require('../routes/mail');
+
 var app = express();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multer({dest:'./uploads/'}).single('singleInputFileName')); // for parsing multipart/form-data
-// dest origin begin where server is launch.
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -31,6 +31,5 @@ app.get('/', function(req, res){
 app.use('/health', health);
 app.use('/users', users);
 app.use('/send', mail);
-app.use('/drone', postimg);
 
 module.exports = app;
