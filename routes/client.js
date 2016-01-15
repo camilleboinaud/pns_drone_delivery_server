@@ -5,13 +5,13 @@
 var express = require('express');
 var router = express.Router();
 
-var health = require('../business/client');
+var client = require('../business/client');
 
 router.post('/create', createNewClient);
 
 function createNewClient(req,res){
 
-    order(req.body, function(result){
+    client(req.body, function(result){
             res.send(result)
     })
 }
