@@ -34,9 +34,6 @@ var orderSchema = mongoose.Schema({user_id: mongoose.Schema.Types.ObjectId,
     delivery_date: Date,
     delivery_ok: Boolean}
 );
-var Order = mongoose.model('orders', sampleSchema);
+var Order = mongoose.model('orders', orderSchema);
 
-module.exports = {
-    create : createNewCommande,
-    deuxieme : deux
-};
+module.exports = createNewCommande;
