@@ -16,10 +16,10 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-function onError(error){
-    console.log('['+(new Date()).toString()+'] ERROR : A wild error appeared: ' + error);
+function onError(error) {
+    console.log('[' + (new Date()).toString() + '] ERROR : A wild error appeared: ' + error);
 }
 
-function onListening(){
-    console.log('['+(new Date()).toString()+'] INFO: Listening on port ' + port);
+function onListening() {
+    console.log('[' + (new Date()).toString() + '] INFO: Listening on port ' + port);
 }
