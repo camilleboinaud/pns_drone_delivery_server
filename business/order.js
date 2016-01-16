@@ -17,12 +17,15 @@ function createNewCommande(params, callback){
     })
 }
 
-function deux(){
-
+function viewAllOrder(callback){
+    Order.find(function(err, result){
+        if (err){
+            callback({status: 'fail', value: err})
+        } else {
+            callback({status: 'success', value : result})
+        }
+    })
 }
-
-
-
 
 
 var orderSchema = mongoose.Schema({user_id: mongoose.Schema.Types.ObjectId,
@@ -36,4 +39,7 @@ var orderSchema = mongoose.Schema({user_id: mongoose.Schema.Types.ObjectId,
 );
 var Order = mongoose.model('orders', orderSchema);
 
-module.exports = createNewCommande;
+module.exports = {
+    create : createNewCommande,
+    viewAll : viewAllOrder
+};
