@@ -10,7 +10,7 @@ var client = require('../business/client');
 router.post('/create', createNewClient);
 
 function createNewClient(req,res){
-    client(req.body, function(result){
+   client(req.body, function(result){
             res.send(result)
     })
 }

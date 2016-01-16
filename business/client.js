@@ -6,6 +6,8 @@ function createNewClient(params, callback){
          client_lastName : params. client_lastName,
          client_dateOfBirth : params.client_dateOfBirth,
          client_adress : params.client_adress,
+         client_lat : params.client_lat,
+         client_long : params.client_long,
          client_email : params.client_email,
          client_password : params.client_password});
          client.save(function(err,result){
@@ -25,6 +27,8 @@ var clientSchema = mongoose.Schema({
     client_lastName : String,
     client_dateOfBirth : Date,
     client_adress : String,
+    client_lat : Number,
+    client_long : Number,
     client_email : String,
     client_password :  String
 })
