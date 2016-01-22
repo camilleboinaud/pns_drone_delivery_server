@@ -17,7 +17,7 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-router.post('/', sendEmail);
+router.post('/send', sendEmail);
 
 function sendEmail (req, res){
     var mail = req.body;

@@ -31,7 +31,7 @@ app.get('/', function(req, res){
 
 app.use('/health', health);
 app.use('/users', users);
-app.use('/send', mail);
+app.use('/mail', mail);
 app.use('/order', order);
 app.use('/clients', client);
 
