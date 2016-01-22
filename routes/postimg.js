@@ -4,16 +4,16 @@
 
 var express = require('express');
 var router = express.Router();
-router.post('/postimg', sendImg);
+
+var upload = require('../business/picture');
+
+router.post('/picture', postImg);
 
 
-function getgIm(req, res){
-
-    var jsonResp = {
-        status : 'success',
-        data : 'image well received'
-    };
-
-    res.send(jsonResp);
+function postImg(req, res){
+    upload(req.body, req.file, function(result){
+        res.send(result);
+    })
 }
+
 module.exports = router;

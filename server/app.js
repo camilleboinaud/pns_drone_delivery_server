@@ -11,11 +11,12 @@ var users = require('../routes/users');
 var order = require('../routes/order');
 var mail = require('../routes/mail');
 var client = require('../routes/client');
+var postPic = require('../routes/postimg');
 var app = express();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(multer({dest:'./uploads/'}).single('singleInputFileName')); // for parsing multipart/form-data
+app.use(multer({dest:'./uploads/'}).single('file')); // for parsing multipart/form-data
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -34,5 +35,6 @@ app.use('/users', users);
 app.use('/send', mail);
 app.use('/order', order);
 app.use('/clients', client);
+app.use('/upload', postPic);
 
 module.exports = app;
