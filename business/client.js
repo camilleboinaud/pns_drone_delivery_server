@@ -21,6 +21,16 @@ function createNewClient(params, callback){
          })
 }
 
+function viewAllClient(callback){
+    Client.find(function(err, result){
+        if (err){
+            callback({status: 'fail', value: err})
+        } else {
+            callback({status: 'success', value : result})
+        }
+    })
+}
+
 var clientSchema = mongoose.Schema({
     client_id : mongoose.Schema.Types.ObjectId,
     client_firstName : String,
@@ -35,4 +45,7 @@ var clientSchema = mongoose.Schema({
 
 var Client = mongoose.model('clients', clientSchema);
 
-module.exports = createNewClient;
+module.exports = {
+    create : createNewClient,
+    viewAll : viewAllClient
+};
