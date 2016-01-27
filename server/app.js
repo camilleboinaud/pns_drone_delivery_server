@@ -6,6 +6,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var multer = require('multer');
 
+var api = require('../routes/drone.api');
 var health = require('../routes/health');
 var users = require('../routes/users');
 var order = require('../routes/order');
@@ -36,5 +37,6 @@ app.use('/mail', mail);
 app.use('/order', order);
 app.use('/clients', client);
 app.use('/upload', postPic);
+app.use('/api', api);
 
 module.exports = app;
