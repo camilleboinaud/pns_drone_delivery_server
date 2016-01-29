@@ -5,8 +5,18 @@
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 
+function dropTable(callback){
+    FlightPlan.remove({}, function(err){
+        if (err){
+            callback(err)
+        } else {
+            callback('success')
+        }
+    })
+}
+
 function getAll(callback){
-    FlightPlan.findOne(function(err, result){
+    FlightPlan.find(function(err, result){
         if (err){
             callback(err)
         } else {
@@ -57,6 +67,7 @@ var flightPlanSchema = mongoose.Schema({
         timeout: Number,
         customer: {
             name: String,
+            id: mongoose.Schema.ObjectId,
             coordinates: {
                 latitude: Number,
                 longitude: Number
@@ -76,5 +87,6 @@ var FlightPlan = mongoose.model('flightPlans', flightPlanSchema);
 module.exports = {
     create: create,
     assign: assign,
-    all: getAll
+    all: getAll,
+    drop: dropTable
 };

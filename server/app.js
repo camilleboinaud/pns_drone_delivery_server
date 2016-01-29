@@ -8,7 +8,6 @@ var multer = require('multer');
 
 var api = require('../routes/drone.api');
 var health = require('../routes/health');
-var users = require('../routes/users');
 var order = require('../routes/order');
 var mail = require('../routes/mail');
 var client = require('../routes/client');
@@ -33,11 +32,10 @@ app.get('/', function(req, res){
 });
 
 app.use('/health', health);
-app.use('/users', users);
 app.use('/mail', mail);
 app.use('/order', order);
 app.use('/clients', client);
 app.use('/upload', postPic);
-app.use('/api', api);
+app.use('/flightPlan', api);
 
 module.exports = app;

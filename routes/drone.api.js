@@ -13,8 +13,9 @@ var flightPlan = require('../business/flightPlan');
 router.get('/assign', flightplan);
 router.post('/mailauth', mailauth);
 router.post('/deliveryack', deliveryack);
-router.post('/createFlightPlan', generate);
+router.post('/create', generate);
 router.get('/collection', getAllFlightPlan);
+router.delete('/drop', dropTable);
 
 function getAllFlightPlan(req, res){
     flightPlan.all(function(result){
@@ -50,6 +51,12 @@ function flightplan(req, res){
 
     });*/
     flightPlan.assign(function(result){
+        res.send(result)
+    })
+}
+
+function dropTable(req, res){
+    flightPlan.drop(function(result){
         res.send(result)
     })
 }

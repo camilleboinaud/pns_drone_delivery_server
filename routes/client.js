@@ -7,10 +7,10 @@ var router = express.Router();
 var client = require('../business/client');
 
 router.post('/create', createNewClient);
-router.get('/viewAll', getAllClient);
+router.get('/collection', getAllClient);
 
 function createNewClient(req,res){
-   client(req.body, function(result){
+   client.create(req.body, function(result){
             res.send(result)
     })
 }

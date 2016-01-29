@@ -5,42 +5,18 @@
 var express = require('express');
 var router = express.Router();
 
-var http   = require('http'),
-qs         = require('querystring'),
-nodemailer = require('nodemailer');
+var mail = require('../business/mailer');
 
-var transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: 'qrcode.drone@gmail.com',
-    pass: 'QRCode123'//process.env.MDP
-  }
-});
-
-router.post('/send', sendEmail);
+router.post('/authentication', sendEmail);
 
 function sendEmail (req, res){
-    var mail = req.body;
-
-    var mailOptions = {
-            from: mail.name+' <'+ mail.sender +'>',
-            to: 'clement.forneris@gmail.com',
-            subject: 'Confirmation drone delivry ',
-            attachments: [{
-                    filename: 'lol.jpg',
-                    path: './lol.jpg',
-            }],
-            text: mail.message,
-            html: mail.message
-    };
-
-    transporter.sendMail(mailOptions, function(err, response){
-        if (err){
-            console.error(err);
-            res.status(500).send()
-        } else {
-            res.send({status:'success'});
-        }
-    });
+    if (req.query.userId != undefined) {
+        mail(req.query.userId, function(result){
+            res.send(result)
+        })
+    } else {
+        res.send({status: 'fail', value: 'userId is needed'})
+    }
 }
+
 module.exports = router;
