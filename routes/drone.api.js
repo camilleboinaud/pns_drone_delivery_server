@@ -3,23 +3,36 @@
 var express = require('express');
 var router = express.Router();
 
+var flightPlan = require('../business/flightPlan');
+
 
 /**
  * API's routes
  */
 
-router.get('/flightplan', flightplan);
+router.get('/assign', flightplan);
 router.post('/mailauth', mailauth);
 router.post('/deliveryack', deliveryack);
+router.post('/createFlightPlan', generate);
+router.get('/collection', getAllFlightPlan);
+
+function getAllFlightPlan(req, res){
+    flightPlan.all(function(result){
+        res.send(result)
+    })
+}
 
 
 /**
  * Mocked implementations
  */
 
-function flightplan(request, response){
-	response.status(200).json({
+function flightplan(req, res){
+	// drone_id
+
+    /*response.status(200).json({
         droneId: "0123456789876543210",
+
         flightPlan: {
             timeout: 30000,
             customer: {
@@ -34,7 +47,11 @@ function flightplan(request, response){
                 qrCodeValue: "#QRCodesAreAwesomes"
             }
         }
-    });
+
+    });*/
+    flightPlan.assign(function(result){
+        res.send(result)
+    })
 }
 
 function mailauth(request, response){
@@ -51,6 +68,12 @@ function mailauth(request, response){
 
 function deliveryack(request, response) {
     response.status(200).json({});
+}
+
+function generate(req, res){
+    flightPlan.create(req.body, function(result){
+        res.send(result);
+    })
 }
 
 module.exports = router;

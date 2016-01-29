@@ -31,6 +31,16 @@ function viewAllClient(callback){
     })
 }
 
+function getOne(client_id, callback){
+    Client.findOne({_id: client_id}, function(err, result){
+        if (err){
+            callback(err)
+        } else {
+            callback(result)
+        }
+    })
+}
+
 var clientSchema = mongoose.Schema({
     client_id : mongoose.Schema.Types.ObjectId,
     client_firstName : String,
@@ -41,11 +51,12 @@ var clientSchema = mongoose.Schema({
     client_long : Number,
     client_email : String,
     client_password :  String
-})
+});
 
 var Client = mongoose.model('clients', clientSchema);
 
 module.exports = {
     create : createNewClient,
-    viewAll : viewAllClient
+    viewAll : viewAllClient,
+    find : getOne
 };
