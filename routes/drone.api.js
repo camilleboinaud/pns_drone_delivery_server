@@ -38,15 +38,17 @@ function flightplan(request, response){
 }
 
 function mailauth(request, response){
+	var bo = true;// (Math.random() < .5) ? true : false;
+	console.log("hey : " + bo);
     setTimeout(function(){
     	response.status(200).json({
             droneId: "0123456789876543210",
     		mailauth: {
-                result: (Math.random() < .5) ? true : false,
+                result: bo,
                 message: "blabla"
             }
     	});
-    }, 60000)
+    }, 10000)
 }
 
 function deliveryack(request, response) {
