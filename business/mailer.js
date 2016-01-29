@@ -36,7 +36,14 @@ function sendEmail(userId, callback){
                 if (err){
                     callback({status: 'fail', value: err})
                 } else {
-                    callback({status:'success', data: response});
+                    callback({
+                        droneId: "0123456789876543210",
+                        mailauth: {
+                            result: true,
+                            message: "blabla"
+                        }
+                    });
+                    //callback({status:'success', data: response});
                 }
             });
         }
