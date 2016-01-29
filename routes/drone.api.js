@@ -86,13 +86,13 @@ function generate(req, res){
 }
 
 function verify(req, res){
-    flightPlan.verify(req.query.userId, req.query.droneId, function(result){
+    flightPlan.verify(req.query.transaction, function(result){
         res.send(result)
     })
 }
 
 function check(req, res){
-    flightPlan.check(req.query.userId, req.query.droneId, function(result){
+    flightPlan.check(req.query.transaction, function(result){
         res.send(result)
     })
 }

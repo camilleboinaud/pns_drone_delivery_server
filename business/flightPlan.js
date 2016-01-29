@@ -5,11 +5,13 @@
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 
-function verify(userId, droneId, callback){
-    FlightPlan.findOne({drone_id: droneId, customer:{id:userId}}, function(err, result){
+function verify(transaction, callback){
+    FlightPlan.findOne({transaction: transaction}, function(err, result){
+        console.log(result);
         if (err || result == null){
             callback({status: 'fail', data: err})
         } else {
+            console.log(result);
             result.processed = true;
             result.save(function(err){
                 if (err){
@@ -22,19 +24,19 @@ function verify(userId, droneId, callback){
     })
 }
 
-function checkAcceptance(userId, droneId, callback){
-    FlightPlan.findOne({processed: true, drone_id: droneId, customer:{id:userId}}, function(err, result){
-        if (err || result == null){
+function checkAcceptance(transaction, callback){
+    FlightPlan.findOne({processed: true, transaction: transaction}, function(err, result){
+        if (err){
             callback({status: 'fail', value: err})
         } else if (result == null) {
-            callback({droneId: droneId,
+            callback({transaction: transaction,
                 mailauth: {
                     result: false,
                     message: "blabla"
                 }
             })
         } else {
-            callback({droneId: droneId,
+            callback({transaction: transaction,
                 mailauth: {
                     result: true,
                     message: "blabla"
@@ -72,7 +74,7 @@ function assign(callback){
             console.log(result);
             var id = uuid.v4().toString();
             console.log(id);
-            result.drone_id = id;
+            result.transaction = id;
             result.inProgress = true;
             result.save(function (err){
                 if (err) {
@@ -101,7 +103,7 @@ function create(body, callback){
 }
 
 var flightPlanSchema = mongoose.Schema({
-    drone_id: String,
+    transaction: String,
     flightPlan: {
         timeout: Number,
         customer: {

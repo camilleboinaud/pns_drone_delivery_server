@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-function sendEmail(userId, droneId, callback) {
+function sendEmail(userId, transaction, callback) {
     user(userId, function (result) {
         if (result.status == 'fail') {
             callback(result)
@@ -29,7 +29,7 @@ function sendEmail(userId, droneId, callback) {
                  path: './lol.jpg'
                  }*/],
                 text: 'Bonjour ' + result.data.client_firstName + ',\nMerci de bien vouloir cliquer sur le lien suivant pour autoriser la livraison de votre colis :\n\n' +
-                'http://localhost:4000/flightPlan/verify?userId='+userId+'&droneId='+droneId+'\n\n' +
+                'http://localhost:4000/flightPlan/verify?transaction='+transaction+'\n\n' +
                 'Merci pour votre confiance envers QRCodeDelivery & Co,\net a bientôt sur l\'un de nos nombreux services.'
             };
             transporter.sendMail(mailOptions, function (err, response) {
