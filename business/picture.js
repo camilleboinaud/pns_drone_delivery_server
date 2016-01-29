@@ -3,20 +3,17 @@
  */
 
 var fs = require('fs');
-const path = '';
 
 function saveFile(body, file, callback) {
     if (file == undefined){
         callback({status: 'fail', value: 'missing file'})
     } else {
-        var extansion = (file.mimetype.split('/'))[1];
+        var extansion = file.originalname.split('.');
 
         fs.rename(__dirname + '/../uploads/' + file.filename, __dirname + '/../uploads/' + file.filename
-            + '.' + extansion);
+            + '.'+ extansion[extansion.length -1]);
 
-        var url = path + extansion + '/' + file.filename;
-
-        callback({status: 'success', value: 'picture successfully saved', data: url})
+        callback({status: 'success', value: 'picture successfully saved'})
     }
 }
 
