@@ -5,6 +5,45 @@
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 
+function verify(userId, droneId, callback){
+    FlightPlan.findOne({drone_id: droneId, customer:{id:userId}}, function(err, result){
+        if (err || result == null){
+            callback({status: 'fail', data: err})
+        } else {
+            result.processed = true;
+            result.save(function(err){
+                if (err){
+                    callback({status:'fail', value: err})
+                } else {
+                    callback({status:'success', data: result})
+                }
+            })
+        }
+    })
+}
+
+function checkAcceptance(userId, droneId, callback){
+    FlightPlan.findOne({processed: true, drone_id: droneId, customer:{id:userId}}, function(err, result){
+        if (err || result == null){
+            callback({status: 'fail', value: err})
+        } else if (result == null) {
+            callback({droneId: droneId,
+                mailauth: {
+                    result: false,
+                    message: "blabla"
+                }
+            })
+        } else {
+            callback({droneId: droneId,
+                mailauth: {
+                    result: true,
+                    message: "blabla"
+                }
+            })
+        }
+    })
+}
+
 function dropTable(callback){
     FlightPlan.remove({}, function(err){
         if (err){
@@ -88,5 +127,7 @@ module.exports = {
     create: create,
     assign: assign,
     all: getAll,
-    drop: dropTable
+    drop: dropTable,
+    verify: verify,
+    check: checkAcceptance
 };

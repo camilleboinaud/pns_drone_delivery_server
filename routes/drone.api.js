@@ -9,13 +9,14 @@ var flightPlan = require('../business/flightPlan');
 /**
  * API's routes
  */
-
 router.get('/assign', flightplan);
 router.post('/mailauth', mailauth);
 router.post('/deliveryack', deliveryack);
 router.post('/create', generate);
 router.get('/collection', getAllFlightPlan);
 router.delete('/drop', dropTable);
+router.get('/verify', verify);
+router.get('/checkAcceptation', check);
 
 function getAllFlightPlan(req, res){
     flightPlan.all(function(result){
@@ -23,11 +24,9 @@ function getAllFlightPlan(req, res){
     })
 }
 
-
 /**
  * Mocked implementations
  */
-
 function flightplan(req, res){
 	// drone_id
 
@@ -83,6 +82,18 @@ function deliveryack(request, response) {
 function generate(req, res){
     flightPlan.create(req.body, function(result){
         res.send(result);
+    })
+}
+
+function verify(req, res){
+    flightPlan.verify(req.query.userId, req.query.droneId, function(result){
+        res.send(result)
+    })
+}
+
+function check(req, res){
+    flightPlan.check(req.query.userId, req.query.droneId, function(result){
+        res.send(result)
     })
 }
 

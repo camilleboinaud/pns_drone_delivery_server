@@ -13,39 +13,40 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-function sendEmail(userId, callback){
-    user(userId, function(result){
-        if (result.status == 'fail'){
+function sendEmail(userId, droneId, callback) {
+    user(userId, function (result) {
+        if (result.status == 'fail') {
             callback(result)
         } else if (result.data == null) {
-            callback({status:'fail', value:'user is not defined'})
+            callback({status: 'fail', value: 'user is not defined'})
         } else {
             var mailOptions = {
-                from: 'QRCodeDelivery'+' <qrcode.drone@gmail.com>',
+                from: 'QRCodeDelivery' + ' <qrcode.drone@gmail.com>',
                 to: result.data.client_email,
                 subject: 'Confirmation de livraison',
                 attachments: [/*{
                  filename: 'lol.jpg',
                  path: './lol.jpg'
                  }*/],
-                text: 'Bonjour ' + result.data.client_firstName+',\nMerci de bien vouloir cliquer sur le lien suivant pour autoriser la livraison de votre colis :\n\n'+
-                '(Ici aura place le futur lien)\n\n'+
+                text: 'Bonjour ' + result.data.client_firstName + ',\nMerci de bien vouloir cliquer sur le lien suivant pour autoriser la livraison de votre colis :\n\n' +
+                'http://localhost:4000/flightPlan/verify?userId='+userId+'&droneId='+droneId+'\n\n' +
                 'Merci pour votre confiance envers QRCodeDelivery & Co,\net a bientôt sur l\'un de nos nombreux services.'
             };
-            transporter.sendMail(mailOptions, function(err, response){
-                if (err){
+            transporter.sendMail(mailOptions, function (err, response) {
+                if (err) {
                     callback({status: 'fail', value: err})
                 } else {
-                    callback({
-                        droneId: "0123456789876543210",
-                        mailauth: {
-                            result: true,
-                            message: "blabla"
-                        }
-                    });
-                    //callback({status:'success', data: response});
+                    /*callback({
+                     droneId: "0123456789876543210",
+                     mailauth: {
+                     result: true,
+                     message: "blabla"
+                     }
+                     });*/
+                    callback({status: 'success', data: response});
                 }
-            });
+
+            })
         }
     });
 }
