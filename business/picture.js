@@ -56,7 +56,7 @@ var FileSchema = mongoose.Schema({
     transaction: String,
     extension: String
 });
-var File = mongosse.model('file', FileSchema);
+var File = mongoose.model('file', FileSchema);
 
 module.exports = {
     save: saveFile,
