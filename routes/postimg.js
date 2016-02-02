@@ -18,7 +18,7 @@ function postImg(req, res){
 }
 
 function download(req, res){
-    picture.download(req.params.transaction, function(result){
+    picture.download(req.params.transaction, function(result, contentType){
         if (result == 'fail'){
             res.send({status: 'fail', value: 'error server'})
         } else if (result == 'noFile'){
