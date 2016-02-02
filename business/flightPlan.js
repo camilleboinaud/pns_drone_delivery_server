@@ -73,6 +73,7 @@ function assign(callback){
         } else {
             console.log(result);
             var id = uuid.v4().toString();
+            // TODO : Generate random string an send special QRCode
             console.log(id);
             result.transaction = id;
             result.inProgress = true;
