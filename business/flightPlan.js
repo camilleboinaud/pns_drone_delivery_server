@@ -4,6 +4,11 @@
 
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
+var fs = require('fs');
+var qrcode = require('qr-image');
+var randomString = require("randomstring");
+
+var sendQRCode = require('./mailer').sendQRCode;
 
 function verify(transaction, callback){
     FlightPlan.findOne({transaction: transaction}, function(err, result){
@@ -73,7 +78,6 @@ function assign(callback){
         } else {
             console.log(result);
             var id = uuid.v4().toString();
-            // TODO : Generate random string an send special QRCode
             console.log(id);
             result.transaction = id;
             result.inProgress = true;
@@ -89,11 +93,23 @@ function assign(callback){
 }
 
 function create(body, callback){
+
     var flightPlan = new FlightPlan({
         flightPlan: body.flightPlan,
         inProgress: false,
         processed: false
     });
+
+    var random = randomString.generate(30);
+    flightPlan.flightPlan.order.qrCodeValue = random;
+
+    var qr_png = qrcode.image(random, { type: 'png' });
+    var output = fs.createWriteStream(__dirname + '/../qrCodes/'+random+'.png');
+    qr_png.pipe(output);
+    sendQRCode(flightPlan.flightPlan.customer.id, random+'.png');
+
+
+    // TODO : Generate random string an send special QRCode
     flightPlan.save(function (err){
         if (err){
             callback(err)

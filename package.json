@@ -15,12 +15,13 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-express-server": "^0.5.1",
     "lodash": "^3.10.1",
-    "node-uuid": "^1.4.7",
 
     "node-uuid": "^1.4.7",
     "nodemailer": "^1.11.0",
     "mongodb" : "^2.1.x",
     "mongoose" : "latest",
-    "kerberos" : "0.0.17"
+    "kerberos" : "0.0.17",
+    "qr-image" : "^3.1.x",
+    "randomstring" : "latest"
   }
 }

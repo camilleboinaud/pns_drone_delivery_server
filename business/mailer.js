@@ -24,10 +24,6 @@ function sendEmail(userId, transaction, callback) {
                 from: 'QRCodeDelivery' + ' <qrcode.drone@gmail.com>',
                 to: result.data.client_email,
                 subject: 'Confirmation de livraison',
-                attachments: [/*{
-                 filename: 'lol.jpg',
-                 path: './lol.jpg'
-                 }*/],
                 text: 'Bonjour ' + result.data.client_firstName + ',\nMerci de bien vouloir cliquer sur le lien suivant pour autoriser la livraison de votre colis :\n\n' +
                 'http://localhost:4000/flightPlan/verify?transaction='+transaction+'\n\n' +
                 'Merci pour votre confiance envers QRCodeDelivery & Co,\net a bientôt sur l\'un de nos nombreux services.'
@@ -36,13 +32,6 @@ function sendEmail(userId, transaction, callback) {
                 if (err) {
                     callback({status: 'fail', value: err})
                 } else {
-                    /*callback({
-                     droneId: "0123456789876543210",
-                     mailauth: {
-                     result: true,
-                     message: "blabla"
-                     }
-                     });*/
                     callback({status: 'success', data: response});
                 }
 
@@ -62,10 +51,6 @@ function sendMailWithPicture(userId, transaction){
                 from: 'QRCodeDelivery' + ' <qrcode.drone@gmail.com>',
                 to: result.data.client_email,
                 subject: 'Validation de livraison',
-                attachments: [/*{
-                 filename: 'lol.jpg',
-                 path: './lol.jpg'
-                 }*/],
                 text: 'Bonjour ' + result.data.client_firstName + ',\nPour vérifier que votre colis à bien été livré, merci de bien vouloir cliquer sur le lien suivant :\n\n' +
                 'http://localhost:4000/file/download/'+transaction+'\n\n' +
                 'Merci pour votre confiance envers QRCodeDelivery & Co,\net a bientôt sur l\'un de nos nombreux services.'
@@ -77,10 +62,38 @@ function sendMailWithPicture(userId, transaction){
             })
         }
     })
+}
 
+function sendQRCode(userId, qrCode){
+    user(userId, function(result){
+        if (result.status == 'fail') {
+            console.log(result)
+        } else if (result.data == null) {
+            console.log({status: 'fail', value: 'user is not defined'})
+        } else {
+            var mailOptions = {
+                from: 'QRCodeDelivery' + ' <qrcode.drone@gmail.com>',
+                to: result.data.client_email,
+                subject: 'QRCode de livraison',
+                attachments: [{
+                 filename: 'QRCode.png',
+                 path: __dirname + '/../qrCodes/'+qrCode
+                 }],
+                text: 'Bonjour ' + result.data.client_firstName + ',\nVoici le QRCode a présenter lors de la livraison de votre colis.\n' +
+                'Surtout ne le perdez pas.\n\n' +
+                'Merci pour votre confiance envers QRCodeDelivery & Co,\net a bientôt sur l\'un de nos nombreux services.'
+            };
+            transporter.sendMail(mailOptions, function (err, response) {
+                if (err){
+                    console.log(err)
+                }
+            })
+        }
+    })
 }
 
 module.exports = {
     sendMail: sendEmail,
-    sendPicture: sendMailWithPicture
+    sendPicture: sendMailWithPicture,
+    sendQRCode: sendQRCode
 };
