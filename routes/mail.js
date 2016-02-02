@@ -11,7 +11,7 @@ router.post('/authentication', sendEmail);
 
 function sendEmail (req, res){
     if (req.query.userId != undefined) {
-        mail(req.query.userId, req.query.transaction, function(result){
+        mail.sendMail(req.query.userId, req.query.transaction, function(result){
             res.send(result)
         })
     } else {
