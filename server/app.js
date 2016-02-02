@@ -35,7 +35,7 @@ app.use('/health', health);
 app.use('/mail', mail);
 app.use('/order', order);
 app.use('/clients', client);
-app.use('/upload', postPic);
+app.use('/file', postPic);
 app.use('/flightPlan', api);
 
 module.exports = app;

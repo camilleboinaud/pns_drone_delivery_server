@@ -51,4 +51,38 @@ function sendEmail(userId, transaction, callback) {
     });
 }
 
-module.exports = sendEmail;
+function sendMailWithPicture(userId, transaction){
+    user(userId, function(result){
+        if (result.status == 'fail') {
+            callback(result)
+        } else if (result.data == null) {
+            callback({status: 'fail', value: 'user is not defined'})
+        } else {
+            var mailOptions = {
+                from: 'QRCodeDelivery' + ' <qrcode.drone@gmail.com>',
+                to: result.data.client_email,
+                subject: 'Validation de livraison',
+                attachments: [/*{
+                 filename: 'lol.jpg',
+                 path: './lol.jpg'
+                 }*/],
+                text: 'Bonjour ' + result.data.client_firstName + ',\nPour vérifier que votre colis à bien été livré, merci de bien vouloir cliquer sur le lien suivant :\n\n' +
+                'http://localhost:4000/file/download/'+transaction+'\n\n' +
+                'Merci pour votre confiance envers QRCodeDelivery & Co,\net a bientôt sur l\'un de nos nombreux services.'
+            };
+            transporter.sendMail(mailOptions, function (err, response) {
+                if (err) {
+                    callback({status: 'fail', value: err})
+                } else {
+                    callback({status: 'success', data: response});
+                }
+            })
+        }
+    })
+
+}
+
+module.exports = {
+    sendMail: sendEmail,
+    sendPicture: sendMailWithPicture
+};
