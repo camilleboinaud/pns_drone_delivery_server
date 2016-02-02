@@ -17,7 +17,7 @@ function verify(transaction, callback){
                 if (err){
                     callback({status:'fail', value: err})
                 } else {
-                    callback({status:'success', data: result})
+                    callback('<html>' + 'Merci !' + '</html>')
                 }
             })
         }

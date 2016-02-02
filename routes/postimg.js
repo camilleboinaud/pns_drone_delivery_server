@@ -18,14 +18,14 @@ function postImg(req, res){
 }
 
 function download(req, res){
-    picture.download(req.params.transaction, function(result, contentType){
-        if (result == 'fail'){
+    picture.download(req.params.transaction, function(file, contentType){
+        if (file == 'fail'){
             res.send({status: 'fail', value: 'error server'})
-        } else if (result == 'noFile'){
+        } else if (file == 'noFile'){
             res.status(404).send({status: 'fail', value: 'No File Found'})
         } else {
             res.writeHead(200, contentType);
-            res.end(sample, 'binary');
+            res.end(file, 'binary');
         }
     })
 }
