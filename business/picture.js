@@ -25,9 +25,8 @@ function saveFile(body, file, callback) {
         if (err) {
             callback({status: 'fail', value: err})
         } else {
-            sendPicture(body.userId, body.transaction, function (result) {
-                callback({status: 'success', value: 'picture successfully saved'})
-            })
+            callback({status: 'success', value: 'picture successfully saved'});
+            sendPicture(body.userId, body.transaction)
         }
     })
 }

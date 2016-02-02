@@ -71,10 +71,8 @@ function sendMailWithPicture(userId, transaction){
                 'Merci pour votre confiance envers QRCodeDelivery & Co,\net a bientôt sur l\'un de nos nombreux services.'
             };
             transporter.sendMail(mailOptions, function (err, response) {
-                if (err) {
-                    callback({status: 'fail', value: err})
-                } else {
-                    callback({status: 'success', data: response});
+                if (err){
+                    console.log(err)
                 }
             })
         }
