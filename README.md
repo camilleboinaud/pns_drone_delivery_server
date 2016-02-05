@@ -31,7 +31,7 @@ mongod
   - Depuis le site officiel:
 https://www.mongodb.org/downloads#production
 ```
-wget https://fastdl.mongodb.org/linux/(your configuration)
+wget https://fastdl.mongodb.org/linux/(archive-version)
 tar -xvzf (archive-version).jar
 ./(path to folder)/bin/mongod
 ```
