@@ -5,7 +5,7 @@ Drone Delivery Server est la partie serveur permettant la communication avec le 
 Il basé sur la technologie Node.js et expose une interface HTTP respectant au mieux les principes
 RESTs.
 
-## Installation de Node.js
+## Installation de Node.js & MongoDB
 
 **Node.js**:
   - Depuis les pacquets Ubuntu:
@@ -19,6 +19,21 @@ curl -sL https://deb.nodesource.com/setup_5.x | sudo bash -
 sudo apt-get install nodejs
 sudo apt-get upgrade
 sudo apt-get update
+```
+
+**MongoDB**:
+  - Depuis les pacquets Ubuntu:
+```
+sudo apt-get install mongodb
+mongod
+```
+
+  - Depuis le site officiel:
+wget https://www.mongodb.org/downloads#production
+```
+https://fastdl.mongodb.org/linux/(your configuration)
+tar -xvz (archive-version).jar
+./(path to folder)/bin/mongod
 ```
 
 ## Mise en place du serveur
@@ -50,7 +65,7 @@ fonctionnement.
 grunt serve
 ```
 
-Une version de ce serveur est également déployé à l'url suivante :
+Une version de ce serveur est également déployé à l'url suivante:
 http://ec2-52-49-153-103.eu-west-1.compute.amazonaws.com:8080/
 
 ## Membres
