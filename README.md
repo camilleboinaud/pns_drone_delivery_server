@@ -29,10 +29,10 @@ mongod
 ```
 
   - Depuis le site officiel:
-wget https://www.mongodb.org/downloads#production
+https://www.mongodb.org/downloads#production
 ```
-https://fastdl.mongodb.org/linux/(your configuration)
-tar -xvz (archive-version).jar
+wget https://fastdl.mongodb.org/linux/(your configuration)
+tar -xvzf (archive-version).jar
 ./(path to folder)/bin/mongod
 ```
 
@@ -65,7 +65,7 @@ fonctionnement.
 grunt serve
 ```
 
-Une version de ce serveur est également déployé à l'url suivante:
+Une version de ce serveur est également déployé à l'url suivante:</br>
 http://ec2-52-49-153-103.eu-west-1.compute.amazonaws.com:8080/
 
 ## Membres
