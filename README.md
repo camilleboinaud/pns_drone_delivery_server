@@ -50,6 +50,9 @@ fonctionnement.
 grunt serve
 ```
 
+Une version de ce serveur est également déployé à l'url suivante :
+http://ec2-52-49-153-103.eu-west-1.compute.amazonaws.com:8080/
+
 ## Membres
 
 * **Rémy Dupanloup**: remy.dupanloup@etu.unice.fr
