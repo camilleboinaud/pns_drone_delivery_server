@@ -22,7 +22,7 @@ function verify(transaction, callback){
                 if (err){
                     callback({status:'fail', value: err})
                 } else {
-                    callback('<html>' + 'Merci !' + '</html>')
+                    callback('<html><h1 color="c0a000">Merci d\'avoir confirmez votre livraison de commande</h1><br><h2>A bientôt sur l\'un de nos nombreux services</h2></html>')
                 }
             })
         }
@@ -75,6 +75,8 @@ function assign(callback){
     FlightPlan.findOne({inProgress : false}, function(err, result){
         if (err){
            callback(err)
+        } else if (result == null) {
+            callback('fail')
         } else {
             console.log(result);
             var id = uuid.v4().toString();

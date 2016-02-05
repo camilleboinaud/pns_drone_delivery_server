@@ -1,20 +1,58 @@
-# pns_drone_delivery_server
+PNS Drone Delivery Server
+=========================
 
-Dans le dossier pns_drone_delivery_server/
+Drone Delivery Server est la partie serveur permettant la communication avec le drone.
+Il basé sur la technologie Node.js et expose une interface HTTP respectant au mieux les principes
+RESTs.
 
-Première étape (à réaliser une seule fois) :
-    - install grunt client en global :
-      sudo npm install -g grunt-cli
+## Installation de Node.js
 
-lancer la commande :
-      sudo npm install
-cette commande installe toute les dépendences necessaire à node pour lancer
-le serveur.
+**Node.js**:
+  - Depuis les pacquets Ubuntu:
+```
+sudo apt-get install nodejs
+```
+  - Depuis le repository nodesource:
+```
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_5.x | sudo bash -
+sudo apt-get install nodejs
+sudo apt-get upgrade
+sudo apt-get update
+```
 
-ensuite on utilise Grunt pour gérer le serveur.
+## Mise en place du serveur
 
+* **Client Grunt**: Install grunt en global (utilisable sur tous les
+projets node).
+```
+sudo npm install -g grunt-cli
+```
+
+* **Dépendances NPM**: Install les dépendances necessaires au projet vie le
+fichier package.json
+```
+npm install
+```
+
+## Utilisation
+
+Il est possible de d'initialiser la variable d'environnement PORT afin de définir
+le port sur lequel le serveur écoutera les requêtes.
+```
+PORT=???? (n° désiré)
+```
+
+**Lancement du serveur** avec grunt. Cette commande permet également de relancer
+automatiquement le serveur en cas de modification d'un fichier nécessaire  à son
+fonctionnement.
+```
 grunt serve
+```
 
-Lance le serveur http, si une modification à lieu dans un fichier javascript
-grunt stop automatiquement le serveur et le relance en prennant en compte
-les nouvelles modifications.
+## Membres
+
+* **Rémy Dupanloup**:(mailto:remy.dupanloup@etu.unice.fr)
+* **Clément Forneris**:(mailto:clement.forneris@etu.unice.fr)
+* **Camille Boinaud**:(mailto:camille.boinaud@etu.unice.fr)
+* **Pierre Leca**:(mailto:pierre.leca@etu.unice.fr)
