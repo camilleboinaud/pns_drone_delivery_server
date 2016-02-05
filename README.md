@@ -29,7 +29,7 @@ projets node).
 sudo npm install -g grunt-cli
 ```
 
-* **Dépendances NPM**: Install les dépendances necessaires au projet vie le
+* **Dépendances Npm**: Install les dépendances nécessaires au projet via le
 fichier package.json
 ```
 npm install
@@ -38,13 +38,13 @@ npm install
 ## Utilisation
 
 Il est possible de d'initialiser la variable d'environnement PORT afin de définir
-le port sur lequel le serveur écoutera les requêtes.
+le port sur lequel le serveur écoutera les requêtes Http.
 ```
 PORT=???? (n° désiré)
 ```
 
 **Lancement du serveur** avec grunt. Cette commande permet également de relancer
-automatiquement le serveur en cas de modification d'un fichier nécessaire  à son
+automatiquement le serveur en cas de modification d'un fichier nécessaire à son
 fonctionnement.
 ```
 grunt serve
@@ -52,7 +52,7 @@ grunt serve
 
 ## Membres
 
-* **Rémy Dupanloup**:(mailto:remy.dupanloup@etu.unice.fr)
-* **Clément Forneris**:(mailto:clement.forneris@etu.unice.fr)
-* **Camille Boinaud**:(mailto:camille.boinaud@etu.unice.fr)
-* **Pierre Leca**:(mailto:pierre.leca@etu.unice.fr)
+* **Rémy Dupanloup**: remy.dupanloup@etu.unice.fr
+* **Clément Forneris**: clement.forneris@etu.unice.fr
+* **Camille Boinaud**: camille.boinaud@etu.unice.fr
+* **Pierre Leca**: pierre.leca@etu.unice.fr
